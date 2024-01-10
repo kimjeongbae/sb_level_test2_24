@@ -1,6 +1,18 @@
-<h3 th:text="${article.title}"></h3>
-<p th:text="${article.content}"></p>
-
-<a th:href="@{/article/list}">목록</a>
-
-<button TYPE="submit">게시판</button>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2 class="border-bottom py-2" th:text="${article.title}"></h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${article.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-3 text-start">
+                    <div th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/article/list}" type="submit" class="btn btn-primary my-2"> 목록</a>
+    <a th:href="@{|/article/modify/${article.id}|}" type="submit" class="btn btn-primary my-2">수정</a>
+    <a th:href="@{|/article/delete/${article.id}|}" type="submit" class="btn btn-primary my-2">삭제</a>
+</div>
+</html>
